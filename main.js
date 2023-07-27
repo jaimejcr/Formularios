@@ -1,30 +1,29 @@
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
-	event.preventDefault();
-    const value = document.querySelector("#name").value
-    console.log(value);
-	const paragraph = document.createElement("p");
-    paragraph.textContent = value;
-    form.appendChild(paragraph);
-    
+  event.preventDefault();
+  const value = document.querySelector("#name").value;
+  console.log(value);
+  const paragraph = document.createElement("p");
+  paragraph.textContent = value;
+  form.appendChild(paragraph);
 });
 
 // console.log("Ejercicio --------- 2");
-const formulario = document.querySelector(".form2")
-formulario.addEventListener("submit", (event)=> {
-    event.preventDefault();
+const formulario = document.querySelector(".form2");
+formulario.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-    const inputValue = document.querySelector("#data").value;
-    const errorMessage = document.createElement("h3")
-    errorMessage.textContent = "Este campo es obligatorio";
-    errorMessage.style.color = "red";
-    errorMessage.style.fontSize = "9px";
-    
-    if(inputValue.length === 0){
-        console.log("Este campo es obligatorio");
-        formulario.appendChild(errorMessage);
-    }
-})
+  const inputValue = document.querySelector("#data").value;
+  const errorMessage = document.createElement("h3");
+  errorMessage.textContent = "Este campo es obligatorio";
+  errorMessage.style.color = "red";
+  errorMessage.style.fontSize = "9px";
+
+  if (inputValue.length === 0) {
+    console.log("Este campo es obligatorio");
+    formulario.appendChild(errorMessage);
+  }
+});
 console.log("Ejercicio ---- 3");
 
 // El siguiente formulario sólo acepta números. Cuando se introduzca un número, en el <div> que hay debajo deben aparecer tantos botones como el número que hayas introducido en el <input>. Además:
@@ -33,9 +32,20 @@ console.log("Ejercicio ---- 3");
 // Los botones con números múltiplos de 10 tendrán otro color distinto.
 
 const formulario3 = document.querySelector(".form3");
+function generarBotones() {
+
 const input = document.querySelector("#number");
 const div = document.querySelector(".results-container");
-formulario3.addEventListener("submit", (event)=> {
-    event.preventDefault();
-    console.log(event.target);
-})
+ const value = input.value;
+ div.innerHTML = "";
+ const numero = parseInt(value, 10);
+ for (let i = 1; i <= numero; i++) {
+    const boton = document.createElement("button");
+    boton.textContent = `Botón ${i}`;
+    div.appendChild(boton);
+ }
+ 
+ 
+}
+generarBotones();
+formulario3.addEventListener("click", generarBotones());
